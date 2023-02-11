@@ -22,7 +22,7 @@ describe ("tasks", () => {
   it ("create new sub task", function() {
 
     mainPage.menageSubtaskBtn()
-    .click({force: true})
+    .click({multiple: true})
     subtaskDialog.taskId()
     .should('be.visible')
 
@@ -33,12 +33,14 @@ describe ("tasks", () => {
     .click({force: true})
     .type('new subtask')
 
+    subtaskDialog.addSubtaskBtn()
+    .click()
     cy.contains('new subtask').should('be.visible')
  
   })
 
 //bug id 1271
-  it (" subtask with 292 chars not created", function() {
+  it (" subtask with 252 chars not created", function() {
 
     mainPage.menageSubtaskBtn()
     .click({force: true})
@@ -48,17 +50,20 @@ describe ("tasks", () => {
     subtaskDialog.subtaskField()
     .should('be.visible')
     .click({force: true})
-    .type('Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-   ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-   ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-   ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg')
+    .type('Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+   'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+   'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+   'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw123')
   
-    cy.contains('Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-    ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-    ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg'+
-    ' Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglwe;knglkenrg').should('not.exist')
+   subtaskDialog.addSubtaskBtn()
+   .click()
+   cy.wait(5000)
+    cy.contains('Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+    'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+    'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw'+
+    'Efnkneknfkjeknqefleknfefelnfoeifrj3qlfj3lkfrjnwelkrngflweknglw123').should('not.exist')
 
-    
+
  
   })
 

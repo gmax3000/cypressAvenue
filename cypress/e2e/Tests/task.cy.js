@@ -4,6 +4,7 @@ import MainPage from "../PO/MainPage";
 describe ("tasks", () => {
     beforeEach(() => {
         loginPage.loggedIn()
+        
     })
 
   const mainPage = new MainPage()

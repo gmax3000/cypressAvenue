@@ -1,3 +1,5 @@
+import { elementIfExists } from "wd/lib/commands"
+
 class MainPage{
 
     inputField(){
@@ -15,6 +17,8 @@ class MainPage{
     menageSubtaskBtn(){
         return cy.get('button[class="btn btn-xs btn-primary ng-binding"]')
     }
+
+   
 
 }
 
